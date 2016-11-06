@@ -42,7 +42,5 @@
     @include('includes.form_error')
 
 
-
-    {{--@include('admin.includes.errors')--}}
 @stop
 
