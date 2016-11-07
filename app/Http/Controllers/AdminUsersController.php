@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsersRequest;
+use App\Photo;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -52,14 +53,20 @@ class AdminUsersController extends Controller
 
         //User::create($request ->all());
 
-//        $input = $request ->all();
-//
-//        if ($file = $request ->file('photo_id')){
-//
-//            $name = time() . $file ->getClientOriginalName();
-//            $file ->move('images', $name);
-//            $photo = Photo::create
-        //}
+        $input = $request ->all();
+
+        if ($file = $request ->file('photo_id')){  //in the case of having a photo
+
+            $name = time() . $file ->getClientOriginalName(); //getting name of the photo and appending time with it
+            $file ->move('images', $name); //moving the file to images folder
+            $photo = Photo::create(['file' => $name]); // creating the photo and name it file
+            $input['photo_id'] = $photo ->id; //pulling the photo id
+        }
+
+        $input['password'] = bcrypt($request ->password); //encrypting password
+
+        User::create($input);  //in the case of not having a photo
+
 
         //return redirect('/admin/users');
 
