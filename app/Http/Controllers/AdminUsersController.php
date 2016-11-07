@@ -68,7 +68,7 @@ class AdminUsersController extends Controller
         User::create($input);  //in the case of not having a photo
 
 
-        //return redirect('/admin/users');
+        return redirect('/admin/users');
 
         //return $request ->all();
     }
@@ -96,7 +96,11 @@ class AdminUsersController extends Controller
     {
         //
 
-        return view('admin.users.edit');
+        $user = User::findOrFail($id);
+
+        $roles = Role::lists('name', 'id') ->all();
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**

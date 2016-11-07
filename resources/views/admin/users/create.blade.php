@@ -42,5 +42,5 @@
     @include('includes.form_error')
 
 
-@stop
+@endsection
 
