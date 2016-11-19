@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>Admin</title>
 
@@ -112,10 +113,10 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Categories<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="panels-wells.html">All Categories</a>
+                                <a href="{{ route('admin.categories.index') }}">All Categories</a>
                             </li>
                             <li>
-                                <a href="buttons.html">Create Category</a>
+                                {{--<a href="{{ route('admin.categories.create') }}">Create Category</a>--}}
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
